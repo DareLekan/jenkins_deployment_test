@@ -1,26 +1,83 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base
+{
+   body
+   {
+     @apply min-h-screen overflow-x-hidden bg-white;
+   }
+
+   body *
+   {
+    @apply font-sans;
+   }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
 
-* {
-  box-sizing: border-box;
-}
+.hero::after
+{
+  
+  background-image: url('/images/confetti.gif') ;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  position: absolute;
+  content:" ";
+} 
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+  
+@media screen and (min-width:768px) {
+
+  .hero
+    {
+      background-image: url('/images/cheers.svg'), url('/images/hero-image.svg'),  linear-gradient(to right, #fff 50%, #FFF4F2 50%);
+      background-size: 8%,auto, auto;
+      background-position:left bottom, 70% center, right;
+      position: relative;
+      padding-bottom: 0;
+      
+    
   }
-  body {
-    color: white;
-    background: black;
+  .grad
+  {
+    background-image: linear-gradient(to right, #FCFCFC ,#fff 50%, #FFF4F2 50%);
   }
+  
+}
+
+.fade
+{
+   opacity: 0;
+   animation: fade 9s ease-in-out infinite;
+}
+
+.fade1
+{
+  animation-delay: 0s;
+}
+
+.fade2
+{
+
+   animation-delay: 3s;
+}
+
+.fade3
+{
+   animation-delay: 6s;
+}
+
+@keyframes fade {
+  0%   {opacity: 1;}
+  30%  {opacity: 1;}
+  33.33%  {opacity: 0;}
+}
+
+.custom-shadow
+{
+  box-shadow: 4px 4px 1px rgba(0, 0, 0, 0.25), 4px 4px 1px rgba(0, 0, 0, 0.25), 4px 4px 1px rgba(0, 0, 0, 0.25);
 }
