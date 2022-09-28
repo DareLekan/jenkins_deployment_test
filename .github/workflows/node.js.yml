@@ -33,7 +33,9 @@ jobs:
       uses: actions/upload-artifact@v3
       with: 
         name: sirk-artifact
-        path: ./pages
+        path: | 
+            ./pages 
+            ./package.json
         
   download-artifact:
   
