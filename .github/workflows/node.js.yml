@@ -29,45 +29,66 @@ jobs:
     - run: npm install
     - run: npm run build --if-present
     
-    - name: upload artifact 
-      uses: actions/upload-artifact@v3
-      with: 
-        name: sirk-artifact
-        path: | 
-            ./pages 
-            ./package.json
-            ./node_modules
-        
-  download-artifact:
-  
-     name: Download Artifact to Remote Machine
-     runs-on: [  self-hosted, fi-lab ]
-     needs: build
-     steps:
-     - name: Download Artifacts
-       uses: actions/download-artifact@v3
-       with:
-         name: sirk-artifact
-     
-     - name: Display structure of downloaded files
-       run: ls -R
-     - name: restart process manager  
-       run: pm2 restart 0
+    - name: Build image
+      run: |
+        docker build -t sirkghjob:latest .
 
-  deploy:
-    name: Deploy ABC-POS
-    runs-on: ubuntu-latest
-    steps:
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@master
+    - name: Upload image
+      uses: ishworkh/docker-image-artifact-upload@v1
       with:
-        host: ${{ secrets.FI_LAB_SERVER }}
-        username: ${{ secrets.FI_LAB_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: ${{ secrets.FI_LAB_PORT }}
-        script: |
-           cd /home/dareomotosho/sir-k
-           sudo git pull origin main
-           sudo npm install
-           sudo npm run build
+        image: "sirkghjob:latest"
+        
+  download-and-deploy-docker:
+    runs-on: [self-hosted, fi-lab]
+    name: Download and deploy docker image artifact
+    
+    steps:
+    - name: Download image artifact
+      uses: ishworkh/docker-image-artifact-download@v1
+      with:
+        image: "sirkghjob:latest"
+    - name: Run docker container
+      run: docker run --name sirkghjob --env PORT=3457 -d -p 3457:3457 ${{ steps.images.output }}
+    
+#     - name: upload artifact 
+#       uses: actions/upload-artifact@v3
+#       with: 
+#         name: sirk-artifact
+#         path: | 
+#             ./pages 
+#             ./package.json
+#             ./node_modules
+        
+#   download-artifact:
+  
+#      name: Download Artifact to Remote Machine
+#      runs-on: [  self-hosted, fi-lab ]
+#      needs: build
+#      steps:
+#      - name: Download Artifacts
+#        uses: actions/download-artifact@v3
+#        with:
+#          name: sirk-artifact
+     
+#      - name: Display structure of downloaded files
+#        run: ls -R
+#      - name: restart process manager  
+#        run: pm2 restart 0
+
+#   deploy:
+#     name: Deploy ABC-POS
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: executing remote ssh commands using password
+#       uses: appleboy/ssh-action@master
+#       with:
+#         host: ${{ secrets.FI_LAB_SERVER }}
+#         username: ${{ secrets.FI_LAB_USER }}
+#         key: ${{ secrets.SSH_PRIVATE_KEY }}
+#         port: ${{ secrets.FI_LAB_PORT }}
+#         script: |
+#            cd /home/dareomotosho/sir-k
+#            sudo git pull origin main
+#            sudo npm install
+#            sudo npm run build
            
