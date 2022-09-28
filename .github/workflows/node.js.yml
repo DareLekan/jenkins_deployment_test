@@ -46,7 +46,7 @@ jobs:
     - name: Download image artifact
       uses: ishworkh/docker-image-artifact-download@v1
       with:
-        image: "sirkghjob:latest"
+        image: "sirkghjob"
     - name: Run docker container
       run: docker run --name sirkghjob --env PORT=3457 -d -p 3457:3457 ${{ steps.images.output }}
     
