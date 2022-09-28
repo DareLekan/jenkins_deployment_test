@@ -35,17 +35,17 @@ jobs:
         name: sirk-artifact
         path: ./pages
         
-#   download-artifact:
-#      name: Download Artifact to Remote Machine
-#      runs-on: self-hosted
-#      steps:
-#      - name: Download Artifacts
-#        uses: actions/download-artifact@v3
-#        with:
-#          name: sirk-artifact
+  download-artifact:
+     name: Download Artifact to Remote Machine
+     runs-on: self-hosted
+     steps:
+     - name: Download Artifacts
+       uses: actions/download-artifact@v3
+       with:
+         name: sirk-artifact
      
-#      - name: Display structure of downloaded files
-#        run: ls -R
+     - name: Display structure of downloaded files
+       run: ls -R
 
   deploy:
     name: Deploy ABC-POS
