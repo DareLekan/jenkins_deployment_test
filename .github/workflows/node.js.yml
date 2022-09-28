@@ -33,9 +33,10 @@ jobs:
       uses: actions/upload-artifact@v3
       with: 
         name: sirk-artifact
-        path: ./pages
+        path: ./*
         
   download-artifact:
+  
      name: Download Artifact to Remote Machine
      runs-on: [  self-hosted, fi-lab ]
      steps:
