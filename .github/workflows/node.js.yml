@@ -33,7 +33,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with: 
         name: sirk-artifact
-        path: ./next
+        path: ./build
         
 #   download-artifact:
 #      name: Download Artifact to Remote Machine
