@@ -36,6 +36,7 @@ jobs:
         path: | 
             ./pages 
             ./package.json
+            ./node_modules
         
   download-artifact:
   
@@ -50,6 +51,8 @@ jobs:
      
      - name: Display structure of downloaded files
        run: ls -R
+     - name: restart process manager  
+       run: pm2 restart 0
 
   deploy:
     name: Deploy ABC-POS
