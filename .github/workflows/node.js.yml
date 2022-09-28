@@ -37,7 +37,7 @@ jobs:
         
   download-artifact:
      name: Download Artifact to Remote Machine
-     runs-on: self-hosted
+     runs-on: [  self-hosted, fi-lab ]
      steps:
      - name: Download Artifacts
        uses: actions/download-artifact@v3
