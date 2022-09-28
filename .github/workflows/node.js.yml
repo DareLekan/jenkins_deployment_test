@@ -41,6 +41,7 @@ jobs:
   download-and-deploy-docker:
     runs-on: [self-hosted, fi-lab]
     name: Download and deploy docker image artifact
+    needs: build
     
     steps:
     - name: Download image artifact
