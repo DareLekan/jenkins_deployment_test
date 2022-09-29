@@ -49,7 +49,7 @@ jobs:
       with:
         image: "sirkghjob:latest"
     - name: Run docker container
-      run: docker run --name action_image_artifact_sirkghjob --env PORT=3457 -d -p 3457:3457 action_image_artifact_sirkghjob
+      run: docker run --name sirkghjob --env PORT=3457 -d -p 3457:3457 sirkghjob
     
 #     - name: upload artifact 
 #       uses: actions/upload-artifact@v3
