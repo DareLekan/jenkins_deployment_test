@@ -49,7 +49,7 @@ jobs:
 #       with:
 #         image: "sirkghjob:latest"
     - name: Remove old container
-      run: docker rm -f sirkayghjob
+      run: docker rm -f sirkghjob
     - name: Run docker container
       run: docker run --name sirkghjob --env PORT=3457 -d -p 3457:3457 sirkghjob
     
