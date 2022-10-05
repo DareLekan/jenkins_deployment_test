@@ -89,7 +89,7 @@ jobs:
       with:
         host: ${{ secrets.PERSONALLY_HOST }}
         username: ${{ secrets.PERSONALLY_USER }}
-        key: ${{ secrets.SSH_PERSONALLY }}
+        key: ${{ secrets.PERSONALLY }}
         port: ${{ secrets.PERSONALLY_PORT }}
         script: |
            cd /home/dareomotosho/jenkins_deployment_test
