@@ -90,7 +90,7 @@ jobs:
         key: ${{ secrets.SSH_PERSONALLY }}
         port: ${{ secrets.PERSONALLY_PORT }}
         script: |
-           cd /home/dareomotosho/sir-k
+           cd /home/dareomotosho/jenkins_deployment_test
            sudo git pull origin main
            sudo npm install
            sudo npm run build
